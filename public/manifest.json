@@ -4,8 +4,8 @@
   "description": "Plan your week, track progress, earn rewards!",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f0f1a",
-  "theme_color": "#0f0f1a",
+  "background_color": "#F8F7F4",
+  "theme_color": "#F8F7F4",
   "orientation": "portrait",
   "icons": [
     {

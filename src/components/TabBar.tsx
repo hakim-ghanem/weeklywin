@@ -12,11 +12,10 @@ export default function TabBar() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // Hide tab bar on planning wizard
   if (location.pathname.startsWith('/plan')) return null
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--color-surface-light)] bg-[var(--color-surface)]">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--color-border)] bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-lg justify-around">
         {tabs.map(tab => {
           const isActive = tab.path === '/'
@@ -26,10 +25,10 @@ export default function TabBar() {
             <button
               key={tab.path}
               onClick={() => navigate(tab.path)}
-              className={`flex flex-1 flex-col items-center gap-1 py-3 text-sm transition-colors ${
+              className={`flex flex-1 flex-col items-center gap-1 py-3 text-xs font-medium transition-colors ${
                 isActive
-                  ? 'text-[var(--color-primary-light)]'
-                  : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
+                  ? 'text-[var(--color-primary)]'
+                  : 'text-[var(--color-text-tertiary)]'
               }`}
             >
               <span className="text-2xl">{tab.icon}</span>

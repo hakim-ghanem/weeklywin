@@ -9,21 +9,25 @@ export default function Onboarding() {
 
   if (step === 1) {
     return (
-      <div className="flex min-h-dvh flex-col items-center justify-center gap-6 px-6 text-center">
-        <span className="text-6xl">🏆</span>
-        <h1 className="text-2xl font-bold text-[var(--color-primary-light)]">Welcome to WeeklyWin!</h1>
-        <p className="text-sm text-[var(--color-text-muted)]">
-          Plan your week, crush your tasks, and earn awesome rewards.
-        </p>
+      <div className="flex min-h-dvh flex-col items-center justify-center gap-8 bg-[var(--color-bg)] px-8 text-center">
+        <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-[var(--color-primary)]">
+          <span className="text-5xl">🏆</span>
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold text-[var(--color-text)]">Welcome to WeeklyWin!</h1>
+          <p className="mt-2 text-base text-[var(--color-text-secondary)]">
+            Plan your week, crush your tasks, earn rewards.
+          </p>
+        </div>
         <div className="w-full max-w-xs">
-          <label className="mb-1 block text-left text-xs text-[var(--color-text-muted)]">What's your name?</label>
+          <label className="mb-2 block text-left text-sm font-medium text-[var(--color-text-secondary)]">What's your name?</label>
           <input
             type="text"
             value={name}
             onChange={e => setName(e.target.value)}
             placeholder="Enter your name"
             autoFocus
-            className="w-full rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-3 text-center text-lg text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none"
+            className="w-full rounded-2xl border border-[var(--color-border)] bg-white p-4 text-center text-lg text-[var(--color-text)] placeholder:text-[var(--color-text-tertiary)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
           />
         </div>
         <button
@@ -34,49 +38,47 @@ export default function Onboarding() {
             }
           }}
           disabled={!name.trim()}
-          className="rounded-lg bg-[var(--color-primary)] px-8 py-3 font-semibold text-white disabled:opacity-50"
+          className="w-full max-w-xs rounded-2xl bg-[var(--color-primary)] px-8 py-4 text-lg font-semibold text-white disabled:opacity-40"
         >
-          Next
+          Get Started
         </button>
       </div>
     )
   }
 
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-6 px-6 text-center">
-      <span className="text-6xl">🔒</span>
-      <h1 className="text-2xl font-bold text-[var(--color-primary-light)]">Parent PIN Setup</h1>
-      <p className="text-sm text-[var(--color-text-muted)]">
-        Set a 4-digit PIN to protect settings and rewards configuration.
-      </p>
-      <div className="w-full max-w-xs">
-        <input
-          type="password"
-          maxLength={4}
-          value={pin}
-          onChange={e => setPin(e.target.value.replace(/\D/g, ''))}
-          placeholder="4-digit PIN"
-          autoFocus
-          className="w-full rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-3 text-center text-2xl tracking-[0.5em] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] placeholder:tracking-normal placeholder:text-base focus:border-[var(--color-primary)] focus:outline-none"
-        />
+    <div className="flex min-h-dvh flex-col items-center justify-center gap-8 bg-[var(--color-bg)] px-8 text-center">
+      <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-[var(--color-border)]">
+        <span className="text-5xl">🔒</span>
       </div>
-      <div className="flex gap-3">
+      <div>
+        <h1 className="text-3xl font-bold text-[var(--color-text)]">Parent PIN</h1>
+        <p className="mt-2 text-base text-[var(--color-text-secondary)]">
+          Set a 4-digit PIN to protect settings and rewards.
+        </p>
+      </div>
+      <input
+        type="password"
+        maxLength={4}
+        value={pin}
+        onChange={e => setPin(e.target.value.replace(/\D/g, ''))}
+        placeholder="····"
+        autoFocus
+        className="w-48 rounded-2xl border border-[var(--color-border)] bg-white p-4 text-center text-3xl tracking-[0.5em] text-[var(--color-text)] placeholder:text-[var(--color-text-tertiary)] placeholder:tracking-[0.5em] focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
+      />
+      <div className="flex w-full max-w-xs gap-3">
         <button
-          onClick={() => {
-            dispatch({ type: 'SET_PIN', pin: '' })
-          }}
-          className="rounded-lg border border-[var(--color-surface-light)] px-6 py-3 text-sm text-[var(--color-text-muted)]"
+          onClick={() => dispatch({ type: 'SET_PIN', pin: '' })}
+          className="flex-1 rounded-2xl border border-[var(--color-border)] py-4 text-base font-medium text-[var(--color-text-secondary)]"
         >
           Skip
         </button>
         <button
           onClick={() => {
-            if (pin.length === 4) {
-              dispatch({ type: 'SET_PIN', pin })
-            }
+            if (pin.length === 4) dispatch({ type: 'SET_PIN', pin })
           }}
           disabled={pin.length !== 4}
-          className="rounded-lg bg-[var(--color-primary)] px-8 py-3 font-semibold text-white disabled:opacity-50"
+          className="flex-1 rounded-2xl bg-[var(--color-primary)] py-4 text-base font-semibold text-white disabled:opacity-40"
         >
           Set PIN
         </button>

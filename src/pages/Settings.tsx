@@ -15,24 +15,22 @@ export default function Settings() {
   if (!unlocked) {
     return (
       <div className="flex flex-col items-center justify-center gap-6 py-20">
-        <span className="text-6xl">🔒</span>
-        <h2 className="text-2xl font-bold">Parent Settings</h2>
-        <p className="text-base text-[var(--color-text-muted)]">Enter PIN to access settings</p>
+        <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-[var(--color-bg)]">
+          <span className="text-4xl">🔒</span>
+        </div>
+        <h2 className="text-2xl font-bold text-[var(--color-text)]">Parent Settings</h2>
+        <p className="text-base text-[var(--color-text-secondary)]">Enter PIN to access</p>
         <input
           type="password"
           maxLength={4}
           value={pinInput}
           onChange={e => setPinInput(e.target.value.replace(/\D/g, ''))}
-          placeholder="4-digit PIN"
-          className="w-40 rounded-xl border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-4 text-center text-2xl tracking-widest text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
+          placeholder="····"
+          className="w-40 rounded-2xl border border-[var(--color-border)] bg-white p-4 text-center text-2xl tracking-widest text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
         />
         <button
-          onClick={() => {
-            if (pinInput === state.settings.parentPin) {
-              setUnlocked(true)
-            }
-          }}
-          className="rounded-xl bg-[var(--color-primary)] px-8 py-3 text-base font-semibold text-white"
+          onClick={() => { if (pinInput === state.settings.parentPin) setUnlocked(true) }}
+          className="rounded-2xl bg-[var(--color-primary)] px-8 py-3 text-base font-semibold text-white"
         >
           Unlock
         </button>
@@ -59,159 +57,95 @@ export default function Settings() {
 
   return (
     <div className="flex flex-col gap-5">
-      <h2 className="text-2xl font-bold">Settings</h2>
+      <h2 className="text-2xl font-bold text-[var(--color-text)]">Settings</h2>
 
-      {/* Profile */}
-      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
-        <h3 className="mb-3 text-lg font-bold">Profile</h3>
+      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+        <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Profile</h3>
         <input
           type="text"
           value={state.profile.name}
           onChange={e => dispatch({ type: 'SET_NAME', name: e.target.value })}
           placeholder="Enter name"
-          className="w-full rounded-xl border border-[var(--color-surface-light)] bg-[var(--color-bg)] p-3 text-base text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
+          className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-3 text-base text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
         />
       </div>
 
-      {/* Parent PIN */}
-      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
-        <h3 className="mb-3 text-lg font-bold">Parent PIN</h3>
+      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+        <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Parent PIN</h3>
         <input
           type="password"
           maxLength={4}
           value={state.settings.parentPin}
           onChange={e => dispatch({ type: 'SET_PIN', pin: e.target.value.replace(/\D/g, '') })}
           placeholder="Set 4-digit PIN"
-          className="w-40 rounded-xl border border-[var(--color-surface-light)] bg-[var(--color-bg)] p-3 text-center text-lg tracking-widest text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
+          className="w-40 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-3 text-center text-lg tracking-widest text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
         />
-        <p className="mt-2 text-sm text-[var(--color-text-muted)]">Protects settings from being changed</p>
+        <p className="mt-2 text-sm text-[var(--color-text-tertiary)]">Protects settings from changes</p>
       </div>
 
-      {/* Reward Shop Config */}
-      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
+      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-lg font-bold">Reward Shop</h3>
-          <button
-            onClick={() => setShowNewReward(!showNewReward)}
-            className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm text-white"
-          >
-            + Add
-          </button>
+          <h3 className="text-base font-bold text-[var(--color-text)]">Reward Shop</h3>
+          <button onClick={() => setShowNewReward(!showNewReward)} className="rounded-xl bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white">+ Add</button>
         </div>
-
         {showNewReward && (
           <div className="mb-4 flex flex-wrap items-end gap-2 rounded-xl bg-[var(--color-bg)] p-4">
-            <input
-              type="text"
-              value={newRewardEmoji}
-              onChange={e => setNewRewardEmoji(e.target.value)}
-              className="w-14 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-2 text-center text-lg text-[var(--color-text)]"
-            />
-            <input
-              type="text"
-              value={newRewardName}
-              onChange={e => setNewRewardName(e.target.value)}
-              placeholder="Reward name"
-              className="flex-1 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-2 text-base text-[var(--color-text)]"
-            />
-            <input
-              type="number"
-              value={newRewardCost}
-              onChange={e => setNewRewardCost(Number(e.target.value))}
-              className="w-24 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-2 text-center text-base text-[var(--color-text)]"
-            />
-            <button
-              onClick={() => {
-                if (newRewardName.trim()) {
-                  dispatch({ type: 'ADD_REWARD', reward: { name: newRewardName, emoji: newRewardEmoji, cost: newRewardCost } })
-                  setNewRewardName('')
-                  setNewRewardEmoji('🎁')
-                  setNewRewardCost(100)
-                  setShowNewReward(false)
-                }
-              }}
-              className="rounded-lg bg-[var(--color-success)] px-4 py-2 text-sm font-medium text-[var(--color-bg)]"
-            >
-              Save
-            </button>
+            <input type="text" value={newRewardEmoji} onChange={e => setNewRewardEmoji(e.target.value)} className="w-14 rounded-lg border border-[var(--color-border)] bg-white p-2 text-center text-lg" />
+            <input type="text" value={newRewardName} onChange={e => setNewRewardName(e.target.value)} placeholder="Name" className="flex-1 rounded-lg border border-[var(--color-border)] bg-white p-2 text-base" />
+            <input type="number" value={newRewardCost} onChange={e => setNewRewardCost(Number(e.target.value))} className="w-24 rounded-lg border border-[var(--color-border)] bg-white p-2 text-center text-base" />
+            <button onClick={() => {
+              if (newRewardName.trim()) {
+                dispatch({ type: 'ADD_REWARD', reward: { name: newRewardName, emoji: newRewardEmoji, cost: newRewardCost } })
+                setNewRewardName(''); setNewRewardEmoji('🎁'); setNewRewardCost(100); setShowNewReward(false)
+              }
+            }} className="rounded-lg bg-[var(--color-success)] px-4 py-2 text-sm font-medium text-white">Save</button>
           </div>
         )}
-
         {state.rewards.available.map(reward => (
-          <div key={reward.id} className="flex items-center justify-between border-b border-[var(--color-surface-light)] py-3 last:border-0">
-            <span className="text-base">{reward.emoji} {reward.name}</span>
+          <div key={reward.id} className="flex items-center justify-between border-b border-[var(--color-border)] py-3 last:border-0">
+            <span className="text-base text-[var(--color-text)]">{reward.emoji} {reward.name}</span>
             <div className="flex items-center gap-3">
-              <span className="text-sm text-[var(--color-accent)]">{reward.cost} pts</span>
-              <button
-                onClick={() => dispatch({ type: 'REMOVE_REWARD', rewardId: reward.id })}
-                className="text-sm text-[var(--color-danger)] hover:underline"
-              >
-                Remove
-              </button>
+              <span className="text-sm font-medium text-[var(--color-primary)]">{reward.cost} pts</span>
+              <button onClick={() => dispatch({ type: 'REMOVE_REWARD', rewardId: reward.id })} className="text-sm text-[var(--color-danger)]">Remove</button>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Point Values */}
-      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
-        <h3 className="mb-3 text-lg font-bold">Point Values</h3>
+      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+        <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Point Values</h3>
         {Object.entries(state.settings.pointValues).map(([key, value]) => (
           <div key={key} className="flex items-center justify-between py-2.5">
-            <span className="text-sm capitalize">{key.replace(/([A-Z])/g, ' $1')}</span>
-            <input
-              type="number"
-              value={value}
-              onChange={e => dispatch({
-                type: 'UPDATE_SETTINGS',
-                settings: { pointValues: { ...state.settings.pointValues, [key]: Number(e.target.value) } }
-              })}
-              className="w-20 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-bg)] p-2 text-center text-sm text-[var(--color-text)]"
-            />
+            <span className="text-sm capitalize text-[var(--color-text-secondary)]">{key.replace(/([A-Z])/g, ' $1')}</span>
+            <input type="number" value={value} onChange={e => dispatch({
+              type: 'UPDATE_SETTINGS', settings: { pointValues: { ...state.settings.pointValues, [key]: Number(e.target.value) } }
+            })} className="w-20 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-2 text-center text-sm text-[var(--color-text)]" />
           </div>
         ))}
       </div>
 
-      {/* Calendar Export */}
-      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
-        <h3 className="mb-3 text-lg font-bold">Calendar Export</h3>
-        <p className="mb-4 text-sm text-[var(--color-text-muted)]">
-          Export this week's tasks to Apple Calendar for native reminders
-        </p>
+      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+        <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Calendar Export</h3>
+        <p className="mb-4 text-sm text-[var(--color-text-secondary)]">Export tasks to Apple Calendar for reminders</p>
         <button
           onClick={() => {
             const weekKey = Object.keys(state.weeks).sort().reverse()[0]
             const week = weekKey ? state.weeks[weekKey] : null
-            if (week) {
-              downloadICS(week.tasks, weekKey, state.settings.reminderTime)
-            }
+            if (week) downloadICS(week.tasks, weekKey, state.settings.reminderTime)
           }}
           disabled={Object.keys(state.weeks).length === 0}
-          className="w-full rounded-xl bg-[var(--color-accent)] py-3 text-base font-semibold text-[var(--color-bg)] disabled:opacity-50"
+          className="w-full rounded-xl bg-[var(--color-accent)] py-3 text-base font-semibold text-white disabled:opacity-40"
         >
-          Export to Calendar (.ics)
+          Export to Calendar
         </button>
       </div>
 
-      {/* Data Export/Import */}
-      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
-        <h3 className="mb-3 text-lg font-bold">Data Sync</h3>
-        <p className="mb-4 text-sm text-[var(--color-text-muted)]">
-          Export your data to sync with another device via iCloud Drive
-        </p>
+      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+        <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Data Sync</h3>
+        <p className="mb-4 text-sm text-[var(--color-text-secondary)]">Sync between devices via iCloud Drive</p>
         <div className="flex gap-3">
-          <button
-            onClick={() => exportData(state)}
-            className="flex-1 rounded-xl bg-[var(--color-primary)] py-3 text-base font-semibold text-white"
-          >
-            Export Data
-          </button>
-          <button
-            onClick={handleImport}
-            className="flex-1 rounded-xl border border-[var(--color-primary)] py-3 text-base font-semibold text-[var(--color-primary-light)]"
-          >
-            Import Data
-          </button>
+          <button onClick={() => exportData(state)} className="flex-1 rounded-xl bg-[var(--color-primary)] py-3 text-base font-semibold text-white">Export</button>
+          <button onClick={handleImport} className="flex-1 rounded-xl border-2 border-[var(--color-primary)] py-3 text-base font-semibold text-[var(--color-primary)]">Import</button>
         </div>
       </div>
     </div>

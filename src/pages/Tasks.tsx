@@ -4,10 +4,10 @@ import { getPointsForTask } from '../utils/points'
 import { formatDayShort, getAllDays } from '../utils/dates'
 import type { Category, DayOfWeek } from '../types'
 
-const CATEGORY_ICONS: Record<string, string> = {
-  school: '📐',
-  activity: '⚽',
-  chore: '🧹',
+const CAT_CLASSES: Record<string, string> = {
+  school: 'cat-school',
+  activity: 'cat-activity',
+  chore: 'cat-chore',
 }
 
 export default function Tasks() {
@@ -19,25 +19,19 @@ export default function Tasks() {
   if (!currentWeek) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 py-20 text-center">
-        <span className="text-6xl">✅</span>
-        <p className="text-base text-[var(--color-text-muted)]">No tasks yet. Plan your week first!</p>
+        <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-[var(--color-primary-light)]">
+          <span className="text-4xl">✅</span>
+        </div>
+        <p className="text-base text-[var(--color-text-secondary)]">No tasks yet. Plan your week first!</p>
       </div>
     )
   }
 
   let tasks = [...currentWeek.tasks]
-
-  if (filterCategory !== 'all') {
-    tasks = tasks.filter(t => t.category === filterCategory)
-  }
-  if (filterStatus === 'pending') {
-    tasks = tasks.filter(t => !t.completed)
-  } else if (filterStatus === 'completed') {
-    tasks = tasks.filter(t => t.completed)
-  }
-  if (filterDay !== 'all') {
-    tasks = tasks.filter(t => t.days.includes(filterDay))
-  }
+  if (filterCategory !== 'all') tasks = tasks.filter(t => t.category === filterCategory)
+  if (filterStatus === 'pending') tasks = tasks.filter(t => !t.completed)
+  else if (filterStatus === 'completed') tasks = tasks.filter(t => t.completed)
+  if (filterDay !== 'all') tasks = tasks.filter(t => t.days.includes(filterDay))
 
   const totalTasks = currentWeek.tasks.length
   const completedTasks = currentWeek.tasks.filter(t => t.completed).length
@@ -46,16 +40,19 @@ export default function Tasks() {
   return (
     <div>
       {/* Weekly progress */}
-      <div className="mb-5 rounded-2xl bg-[var(--color-surface)] p-5">
-        <div className="mb-2 flex items-center justify-between text-base">
-          <span className="font-medium">Weekly Progress</span>
-          <span className="text-[var(--color-text-muted)]">{completedTasks} of {totalTasks}</span>
+      <div className="mb-5 rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+        <div className="mb-3 flex items-center justify-between">
+          <span className="text-base font-semibold text-[var(--color-text)]">Weekly Progress</span>
+          <span className="text-sm font-medium text-[var(--color-text-secondary)]">{completedTasks}/{totalTasks}</span>
         </div>
-        <div className="h-3.5 rounded-full bg-[var(--color-surface-light)] overflow-hidden">
+        <div className="h-3 rounded-full bg-[var(--color-border)] overflow-hidden">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-[var(--color-success)] to-[var(--color-accent)] transition-all duration-500"
+            className="h-full rounded-full bg-[var(--color-primary)] transition-all duration-500"
             style={{ width: `${progressPct}%` }}
           />
+        </div>
+        <div className="mt-2 text-xs text-[var(--color-text-tertiary)]">
+          {Math.round(progressPct)}% complete
         </div>
       </div>
 
@@ -64,28 +61,26 @@ export default function Tasks() {
         <select
           value={filterCategory}
           onChange={e => setFilterCategory(e.target.value as Category | 'all')}
-          className="rounded-lg bg-[var(--color-surface)] px-4 py-2.5 text-sm text-[var(--color-text)]"
+          className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm text-[var(--color-text)] shadow-[var(--shadow-card)]"
         >
           <option value="all">All Categories</option>
-          <option value="school">📐 School</option>
-          <option value="activity">⚽ Activity</option>
-          <option value="chore">🧹 Chore</option>
+          <option value="school">School</option>
+          <option value="activity">Activity</option>
+          <option value="chore">Chore</option>
         </select>
-
         <select
           value={filterStatus}
           onChange={e => setFilterStatus(e.target.value as 'all' | 'pending' | 'completed')}
-          className="rounded-lg bg-[var(--color-surface)] px-4 py-2.5 text-sm text-[var(--color-text)]"
+          className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm text-[var(--color-text)] shadow-[var(--shadow-card)]"
         >
           <option value="all">All Status</option>
           <option value="pending">Pending</option>
           <option value="completed">Completed</option>
         </select>
-
         <select
           value={filterDay}
           onChange={e => setFilterDay(e.target.value as DayOfWeek | 'all')}
-          className="rounded-lg bg-[var(--color-surface)] px-4 py-2.5 text-sm text-[var(--color-text)]"
+          className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm text-[var(--color-text)] shadow-[var(--shadow-card)]"
         >
           <option value="all">All Days</option>
           {getAllDays().map(d => (
@@ -96,7 +91,7 @@ export default function Tasks() {
 
       {/* Task list */}
       {tasks.length === 0 ? (
-        <p className="py-12 text-center text-base text-[var(--color-text-muted)]">No tasks match your filters</p>
+        <p className="py-12 text-center text-base text-[var(--color-text-tertiary)]">No tasks match your filters</p>
       ) : (
         <div className="flex flex-col gap-3">
           {tasks.map(task => {
@@ -104,41 +99,38 @@ export default function Tasks() {
             return (
               <div
                 key={task.id}
-                className={`flex items-center gap-4 rounded-2xl p-4 ${
-                  task.completed
-                    ? 'bg-[var(--color-surface)] opacity-60'
-                    : 'bg-[var(--color-surface)]'
+                className={`flex items-center gap-4 rounded-2xl bg-white p-4 shadow-[var(--shadow-card)] ${
+                  task.completed ? 'opacity-50' : ''
                 }`}
               >
                 <button
                   onClick={() => {
-                    if (task.completed) {
-                      dispatch({ type: 'UNCOMPLETE_TASK', weekKey: currentWeekKey, taskId: task.id })
-                    } else {
-                      dispatch({ type: 'COMPLETE_TASK', weekKey: currentWeekKey, taskId: task.id })
-                    }
+                    if (task.completed) dispatch({ type: 'UNCOMPLETE_TASK', weekKey: currentWeekKey, taskId: task.id })
+                    else dispatch({ type: 'COMPLETE_TASK', weekKey: currentWeekKey, taskId: task.id })
                   }}
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm ${
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 text-sm ${
                     task.completed
-                      ? 'border-[var(--color-success)] bg-[var(--color-success)] text-[var(--color-bg)]'
-                      : 'border-[var(--color-text-muted)] hover:border-[var(--color-primary)]'
+                      ? 'border-[var(--color-success)] bg-[var(--color-success)] text-white'
+                      : 'border-[var(--color-border)] hover:border-[var(--color-primary)]'
                   }`}
                 >
                   {task.completed && '✓'}
                 </button>
                 <div className="flex-1 min-w-0">
-                  <div className={`text-base font-medium truncate ${task.completed ? 'line-through' : ''}`}>
-                    {CATEGORY_ICONS[task.category]} {task.title}
+                  <div className={`text-base font-semibold text-[var(--color-text)] truncate ${task.completed ? 'line-through' : ''}`}>
+                    {task.title}
                   </div>
-                  <div className="flex flex-wrap items-center gap-2 text-sm text-[var(--color-text-muted)]">
+                  <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                    <span className={`rounded-full px-3 py-0.5 text-xs font-semibold ${CAT_CLASSES[task.category]}`}>
+                      {task.category.charAt(0).toUpperCase() + task.category.slice(1)}
+                    </span>
                     {task.days.map(d => (
-                      <span key={d} className="rounded bg-[var(--color-surface-light)] px-2 py-0.5">{formatDayShort(d)}</span>
+                      <span key={d} className="rounded-full bg-[var(--color-bg)] px-2.5 py-0.5 text-xs text-[var(--color-text-secondary)]">{formatDayShort(d)}</span>
                     ))}
-                    {task.priority === 'high' && <span className="text-[var(--color-danger)]">High</span>}
                   </div>
                 </div>
-                <span className="text-sm font-bold text-[var(--color-accent)] shrink-0">
-                  {task.completed ? `+${task.pointsEarned}` : `+${pts}`}
+                <span className="shrink-0 text-sm font-bold text-[var(--color-primary)]">
+                  +{task.completed ? task.pointsEarned : pts}
                 </span>
               </div>
             )
