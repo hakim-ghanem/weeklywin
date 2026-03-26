@@ -26,13 +26,13 @@ export default function TabBar() {
             <button
               key={tab.path}
               onClick={() => navigate(tab.path)}
-              className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-xs transition-colors ${
+              className={`flex flex-1 flex-col items-center gap-1 py-3 text-sm transition-colors ${
                 isActive
                   ? 'text-[var(--color-primary-light)]'
                   : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
               }`}
             >
-              <span className="text-xl">{tab.icon}</span>
+              <span className="text-2xl">{tab.icon}</span>
               <span>{tab.label}</span>
             </button>
           )

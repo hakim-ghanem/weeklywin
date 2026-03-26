@@ -14,17 +14,17 @@ export default function Settings() {
 
   if (!unlocked) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 py-16">
-        <span className="text-4xl">🔒</span>
-        <h2 className="text-lg font-bold">Parent Settings</h2>
-        <p className="text-sm text-[var(--color-text-muted)]">Enter PIN to access settings</p>
+      <div className="flex flex-col items-center justify-center gap-6 py-20">
+        <span className="text-6xl">🔒</span>
+        <h2 className="text-2xl font-bold">Parent Settings</h2>
+        <p className="text-base text-[var(--color-text-muted)]">Enter PIN to access settings</p>
         <input
           type="password"
           maxLength={4}
           value={pinInput}
           onChange={e => setPinInput(e.target.value.replace(/\D/g, ''))}
           placeholder="4-digit PIN"
-          className="w-32 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-3 text-center text-lg tracking-widest text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
+          className="w-40 rounded-xl border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-4 text-center text-2xl tracking-widest text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
         />
         <button
           onClick={() => {
@@ -32,7 +32,7 @@ export default function Settings() {
               setUnlocked(true)
             }
           }}
-          className="rounded-lg bg-[var(--color-primary)] px-6 py-2 text-sm font-semibold text-white"
+          className="rounded-xl bg-[var(--color-primary)] px-8 py-3 text-base font-semibold text-white"
         >
           Unlock
         </button>
@@ -58,67 +58,67 @@ export default function Settings() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <h2 className="text-lg font-bold">Settings</h2>
+    <div className="flex flex-col gap-5">
+      <h2 className="text-2xl font-bold">Settings</h2>
 
       {/* Profile */}
-      <div className="rounded-xl bg-[var(--color-surface)] p-4">
-        <h3 className="mb-2 text-sm font-bold">Profile</h3>
+      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
+        <h3 className="mb-3 text-lg font-bold">Profile</h3>
         <input
           type="text"
           value={state.profile.name}
           onChange={e => dispatch({ type: 'SET_NAME', name: e.target.value })}
           placeholder="Enter name"
-          className="w-full rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-bg)] p-2 text-sm text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
+          className="w-full rounded-xl border border-[var(--color-surface-light)] bg-[var(--color-bg)] p-3 text-base text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
         />
       </div>
 
       {/* Parent PIN */}
-      <div className="rounded-xl bg-[var(--color-surface)] p-4">
-        <h3 className="mb-2 text-sm font-bold">Parent PIN</h3>
+      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
+        <h3 className="mb-3 text-lg font-bold">Parent PIN</h3>
         <input
           type="password"
           maxLength={4}
           value={state.settings.parentPin}
           onChange={e => dispatch({ type: 'SET_PIN', pin: e.target.value.replace(/\D/g, '') })}
           placeholder="Set 4-digit PIN"
-          className="w-32 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-bg)] p-2 text-center text-sm tracking-widest text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
+          className="w-40 rounded-xl border border-[var(--color-surface-light)] bg-[var(--color-bg)] p-3 text-center text-lg tracking-widest text-[var(--color-text)] focus:border-[var(--color-primary)] focus:outline-none"
         />
-        <p className="mt-1 text-xs text-[var(--color-text-muted)]">Protects settings from being changed</p>
+        <p className="mt-2 text-sm text-[var(--color-text-muted)]">Protects settings from being changed</p>
       </div>
 
       {/* Reward Shop Config */}
-      <div className="rounded-xl bg-[var(--color-surface)] p-4">
-        <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-sm font-bold">Reward Shop</h3>
+      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="text-lg font-bold">Reward Shop</h3>
           <button
             onClick={() => setShowNewReward(!showNewReward)}
-            className="rounded-lg bg-[var(--color-primary)] px-3 py-1 text-xs text-white"
+            className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm text-white"
           >
             + Add
           </button>
         </div>
 
         {showNewReward && (
-          <div className="mb-3 flex flex-wrap items-end gap-2 rounded-lg bg-[var(--color-bg)] p-3">
+          <div className="mb-4 flex flex-wrap items-end gap-2 rounded-xl bg-[var(--color-bg)] p-4">
             <input
               type="text"
               value={newRewardEmoji}
               onChange={e => setNewRewardEmoji(e.target.value)}
-              className="w-12 rounded border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-1 text-center text-[var(--color-text)]"
+              className="w-14 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-2 text-center text-lg text-[var(--color-text)]"
             />
             <input
               type="text"
               value={newRewardName}
               onChange={e => setNewRewardName(e.target.value)}
               placeholder="Reward name"
-              className="flex-1 rounded border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-1 text-sm text-[var(--color-text)]"
+              className="flex-1 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-2 text-base text-[var(--color-text)]"
             />
             <input
               type="number"
               value={newRewardCost}
               onChange={e => setNewRewardCost(Number(e.target.value))}
-              className="w-20 rounded border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-1 text-center text-sm text-[var(--color-text)]"
+              className="w-24 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-surface)] p-2 text-center text-base text-[var(--color-text)]"
             />
             <button
               onClick={() => {
@@ -130,7 +130,7 @@ export default function Settings() {
                   setShowNewReward(false)
                 }
               }}
-              className="rounded bg-[var(--color-success)] px-3 py-1 text-xs font-medium text-[var(--color-bg)]"
+              className="rounded-lg bg-[var(--color-success)] px-4 py-2 text-sm font-medium text-[var(--color-bg)]"
             >
               Save
             </button>
@@ -138,13 +138,13 @@ export default function Settings() {
         )}
 
         {state.rewards.available.map(reward => (
-          <div key={reward.id} className="flex items-center justify-between border-b border-[var(--color-surface-light)] py-2 last:border-0">
-            <span className="text-sm">{reward.emoji} {reward.name}</span>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-[var(--color-accent)]">{reward.cost} pts</span>
+          <div key={reward.id} className="flex items-center justify-between border-b border-[var(--color-surface-light)] py-3 last:border-0">
+            <span className="text-base">{reward.emoji} {reward.name}</span>
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-[var(--color-accent)]">{reward.cost} pts</span>
               <button
                 onClick={() => dispatch({ type: 'REMOVE_REWARD', rewardId: reward.id })}
-                className="text-xs text-[var(--color-danger)] hover:underline"
+                className="text-sm text-[var(--color-danger)] hover:underline"
               >
                 Remove
               </button>
@@ -154,11 +154,11 @@ export default function Settings() {
       </div>
 
       {/* Point Values */}
-      <div className="rounded-xl bg-[var(--color-surface)] p-4">
-        <h3 className="mb-2 text-sm font-bold">Point Values</h3>
+      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
+        <h3 className="mb-3 text-lg font-bold">Point Values</h3>
         {Object.entries(state.settings.pointValues).map(([key, value]) => (
-          <div key={key} className="flex items-center justify-between py-1.5">
-            <span className="text-xs capitalize">{key.replace(/([A-Z])/g, ' $1')}</span>
+          <div key={key} className="flex items-center justify-between py-2.5">
+            <span className="text-sm capitalize">{key.replace(/([A-Z])/g, ' $1')}</span>
             <input
               type="number"
               value={value}
@@ -166,16 +166,16 @@ export default function Settings() {
                 type: 'UPDATE_SETTINGS',
                 settings: { pointValues: { ...state.settings.pointValues, [key]: Number(e.target.value) } }
               })}
-              className="w-16 rounded border border-[var(--color-surface-light)] bg-[var(--color-bg)] p-1 text-center text-xs text-[var(--color-text)]"
+              className="w-20 rounded-lg border border-[var(--color-surface-light)] bg-[var(--color-bg)] p-2 text-center text-sm text-[var(--color-text)]"
             />
           </div>
         ))}
       </div>
 
       {/* Calendar Export */}
-      <div className="rounded-xl bg-[var(--color-surface)] p-4">
-        <h3 className="mb-2 text-sm font-bold">Calendar Export</h3>
-        <p className="mb-3 text-xs text-[var(--color-text-muted)]">
+      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
+        <h3 className="mb-3 text-lg font-bold">Calendar Export</h3>
+        <p className="mb-4 text-sm text-[var(--color-text-muted)]">
           Export this week's tasks to Apple Calendar for native reminders
         </p>
         <button
@@ -187,28 +187,28 @@ export default function Settings() {
             }
           }}
           disabled={Object.keys(state.weeks).length === 0}
-          className="w-full rounded-lg bg-[var(--color-accent)] py-2 text-sm font-semibold text-[var(--color-bg)] disabled:opacity-50"
+          className="w-full rounded-xl bg-[var(--color-accent)] py-3 text-base font-semibold text-[var(--color-bg)] disabled:opacity-50"
         >
           Export to Calendar (.ics)
         </button>
       </div>
 
       {/* Data Export/Import */}
-      <div className="rounded-xl bg-[var(--color-surface)] p-4">
-        <h3 className="mb-2 text-sm font-bold">Data Sync</h3>
-        <p className="mb-3 text-xs text-[var(--color-text-muted)]">
+      <div className="rounded-2xl bg-[var(--color-surface)] p-5">
+        <h3 className="mb-3 text-lg font-bold">Data Sync</h3>
+        <p className="mb-4 text-sm text-[var(--color-text-muted)]">
           Export your data to sync with another device via iCloud Drive
         </p>
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           <button
             onClick={() => exportData(state)}
-            className="flex-1 rounded-lg bg-[var(--color-primary)] py-2 text-sm font-semibold text-white"
+            className="flex-1 rounded-xl bg-[var(--color-primary)] py-3 text-base font-semibold text-white"
           >
             Export Data
           </button>
           <button
             onClick={handleImport}
-            className="flex-1 rounded-lg border border-[var(--color-primary)] py-2 text-sm font-semibold text-[var(--color-primary-light)]"
+            className="flex-1 rounded-xl border border-[var(--color-primary)] py-3 text-base font-semibold text-[var(--color-primary-light)]"
           >
             Import Data
           </button>
