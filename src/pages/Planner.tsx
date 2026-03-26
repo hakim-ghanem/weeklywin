@@ -49,7 +49,7 @@ export default function Planner() {
         <h2 className="text-xl font-bold text-[var(--color-text)]">{formatDayFull(selectedDay)}</h2>
         <button
           onClick={() => setViewMode(v => v === 'day' ? 'week' : 'day')}
-          className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-[var(--color-text-secondary)] shadow-[var(--shadow-card)]"
+          className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-[var(--color-text-secondary)] shadow-card"
         >
           {viewMode === 'day' ? 'Week View' : 'Day View'}
         </button>
@@ -70,8 +70,8 @@ export default function Planner() {
                 onClick={() => { setSelectedDay(day); setViewMode('day') }}
                 className={`rounded-2xl p-2.5 text-center transition-all ${
                   isSelected ? 'bg-[var(--color-primary)] text-white shadow-md' :
-                  isToday ? 'bg-white ring-2 ring-[var(--color-primary)] shadow-[var(--shadow-card)]' :
-                  'bg-white shadow-[var(--shadow-card)]'
+                  isToday ? 'bg-white ring-2 ring-[var(--color-primary)] shadow-card' :
+                  'bg-white shadow-card'
                 }`}
               >
                 <div className={`text-xs font-medium ${isSelected ? 'text-white/70' : 'text-[var(--color-text-tertiary)]'}`}>{formatDayShort(day)}</div>
@@ -104,7 +104,7 @@ export default function Planner() {
                   isSelected
                     ? 'bg-[var(--color-primary)] text-white shadow-md'
                     : isToday
-                      ? 'bg-white text-[var(--color-primary)] shadow-[var(--shadow-card)]'
+                      ? 'bg-white text-[var(--color-primary)] shadow-card'
                       : 'text-[var(--color-text-tertiary)]'
                 }`}
               >
@@ -118,7 +118,7 @@ export default function Planner() {
 
       {/* All done celebration */}
       {allDone && (
-        <div className="mb-5 rounded-2xl bg-[var(--color-primary-light)] p-8 text-center shadow-[var(--shadow-card)]">
+        <div className="mb-5 rounded-2xl bg-[var(--color-primary-light)] p-8 text-center shadow-card">
           <span className="text-6xl">🎉</span>
           <p className="mt-3 text-lg font-bold text-[var(--color-primary)]">All done for {formatDayFull(selectedDay)}!</p>
         </div>
@@ -141,8 +141,8 @@ export default function Planner() {
                     dispatch({ type: 'COMPLETE_TASK', weekKey: currentWeekKey, taskId: task.id })
                   }
                 }}
-                className={`flex items-center gap-4 rounded-2xl bg-white p-4 text-left shadow-[var(--shadow-card)] transition-all ${
-                  task.completed ? 'opacity-50' : 'hover:shadow-[var(--shadow-card-hover)]'
+                className={`flex items-center gap-4 rounded-2xl bg-white p-4 text-left shadow-card transition-all ${
+                  task.completed ? 'opacity-50' : 'hover:shadow-card-lg'
                 }`}
               >
                 <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 text-sm ${

@@ -21,7 +21,7 @@ export default function Rewards() {
   return (
     <div className="flex flex-col gap-5">
       {/* Level & Points */}
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <div className="flex items-center gap-4 mb-4">
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-primary-light)]">
             <span className="text-3xl">⭐</span>
@@ -53,7 +53,7 @@ export default function Rewards() {
       </div>
 
       {/* Streaks */}
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <h3 className="mb-3 text-lg font-bold text-[var(--color-text)]">Streaks</h3>
         <div className="flex items-center justify-center gap-3 py-2">
           <span className="text-4xl">🔥</span>
@@ -74,7 +74,7 @@ export default function Rewards() {
       </div>
 
       {/* Badges */}
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <h3 className="mb-4 text-lg font-bold text-[var(--color-text)]">Badges</h3>
         <div className="grid grid-cols-3 gap-3">
           {BADGE_DEFS.map(def => {
@@ -98,7 +98,7 @@ export default function Rewards() {
       </div>
 
       {/* Reward Shop */}
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <h3 className="mb-4 text-lg font-bold text-[var(--color-text)]">Reward Shop</h3>
         <div className="grid grid-cols-2 gap-3">
           {state.rewards.available.map(reward => {

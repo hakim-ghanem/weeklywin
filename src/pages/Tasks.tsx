@@ -40,7 +40,7 @@ export default function Tasks() {
   return (
     <div>
       {/* Weekly progress */}
-      <div className="mb-5 rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="mb-5 rounded-2xl bg-white p-5 shadow-card">
         <div className="mb-3 flex items-center justify-between">
           <span className="text-base font-semibold text-[var(--color-text)]">Weekly Progress</span>
           <span className="text-sm font-medium text-[var(--color-text-secondary)]">{completedTasks}/{totalTasks}</span>
@@ -61,7 +61,7 @@ export default function Tasks() {
         <select
           value={filterCategory}
           onChange={e => setFilterCategory(e.target.value as Category | 'all')}
-          className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm text-[var(--color-text)] shadow-[var(--shadow-card)]"
+          className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm text-[var(--color-text)] shadow-card"
         >
           <option value="all">All Categories</option>
           <option value="school">School</option>
@@ -71,7 +71,7 @@ export default function Tasks() {
         <select
           value={filterStatus}
           onChange={e => setFilterStatus(e.target.value as 'all' | 'pending' | 'completed')}
-          className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm text-[var(--color-text)] shadow-[var(--shadow-card)]"
+          className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm text-[var(--color-text)] shadow-card"
         >
           <option value="all">All Status</option>
           <option value="pending">Pending</option>
@@ -80,7 +80,7 @@ export default function Tasks() {
         <select
           value={filterDay}
           onChange={e => setFilterDay(e.target.value as DayOfWeek | 'all')}
-          className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm text-[var(--color-text)] shadow-[var(--shadow-card)]"
+          className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-sm text-[var(--color-text)] shadow-card"
         >
           <option value="all">All Days</option>
           {getAllDays().map(d => (
@@ -99,7 +99,7 @@ export default function Tasks() {
             return (
               <div
                 key={task.id}
-                className={`flex items-center gap-4 rounded-2xl bg-white p-4 shadow-[var(--shadow-card)] ${
+                className={`flex items-center gap-4 rounded-2xl bg-white p-4 shadow-card ${
                   task.completed ? 'opacity-50' : ''
                 }`}
               >

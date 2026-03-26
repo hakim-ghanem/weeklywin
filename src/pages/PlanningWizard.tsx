@@ -90,7 +90,7 @@ export default function PlanningWizard() {
             <div className="mb-5 flex gap-2">
               {CATEGORIES.map(c => (
                 <button key={c.value} onClick={() => setNewCategory(c.value)}
-                  className={`flex-1 rounded-xl py-3 text-sm font-semibold transition-all ${newCategory === c.value ? 'bg-[var(--color-primary)] text-white shadow-md' : 'bg-white text-[var(--color-text-secondary)] shadow-[var(--shadow-card)]'}`}>
+                  className={`flex-1 rounded-xl py-3 text-sm font-semibold transition-all ${newCategory === c.value ? 'bg-[var(--color-primary)] text-white shadow-md' : 'bg-white text-[var(--color-text-secondary)] shadow-card'}`}>
                   {c.icon} {c.label}
                 </button>
               ))}
@@ -106,7 +106,7 @@ export default function PlanningWizard() {
             )}
             <div className="flex flex-col gap-2.5">
               {tasks.map(task => (
-                <div key={task.id} className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-[var(--shadow-card)]">
+                <div key={task.id} className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-card">
                   <span className={`rounded-full px-3 py-0.5 text-xs font-semibold ${CATEGORIES.find(c => c.value === task.category)?.cls}`}>
                     {CATEGORIES.find(c => c.value === task.category)?.icon}
                   </span>
@@ -131,7 +131,7 @@ export default function PlanningWizard() {
             </div>
             <div className="flex flex-col gap-3">
               {tasks.map(task => (
-                <div key={task.id} className="rounded-2xl bg-white p-4 shadow-[var(--shadow-card)]">
+                <div key={task.id} className="rounded-2xl bg-white p-4 shadow-card">
                   <div className="mb-3 text-base font-semibold text-[var(--color-text)]">{task.title}</div>
                   <div className="flex flex-wrap gap-1.5">
                     {getAllDays().map(day => (
@@ -150,7 +150,7 @@ export default function PlanningWizard() {
         {step === 3 && (
           <div className="flex flex-col gap-3">
             {tasks.map(task => (
-              <div key={task.id} className="rounded-2xl bg-white p-4 shadow-[var(--shadow-card)]">
+              <div key={task.id} className="rounded-2xl bg-white p-4 shadow-card">
                 <div className="mb-3 text-base font-semibold text-[var(--color-text)]">{task.title}</div>
                 <div className="flex items-center gap-3">
                   <div className="flex gap-1.5">
@@ -188,7 +188,7 @@ export default function PlanningWizard() {
                   </div>
                   <div className="flex flex-col gap-2">
                     {dayTasks.map(task => (
-                      <div key={task.id} className="flex items-center gap-3 rounded-2xl bg-white p-4 text-base shadow-[var(--shadow-card)]">
+                      <div key={task.id} className="flex items-center gap-3 rounded-2xl bg-white p-4 text-base shadow-card">
                         <span className={`rounded-full px-3 py-0.5 text-xs font-semibold ${CATEGORIES.find(c => c.value === task.category)?.cls}`}>{CATEGORIES.find(c => c.value === task.category)?.icon}</span>
                         <span className="flex-1 font-medium">{task.title}</span>
                         <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${PRI_CLASSES[task.priority]}`}>{task.priority}</span>
@@ -207,7 +207,7 @@ export default function PlanningWizard() {
         )}
 
         <div className="mt-8 flex justify-between">
-          <button onClick={() => step > 1 ? setStep(step - 1) : navigate('/')} className="rounded-2xl bg-white px-6 py-3 text-base font-medium text-[var(--color-text-secondary)] shadow-[var(--shadow-card)]">
+          <button onClick={() => step > 1 ? setStep(step - 1) : navigate('/')} className="rounded-2xl bg-white px-6 py-3 text-base font-medium text-[var(--color-text-secondary)] shadow-card">
             ← {step === 1 ? 'Cancel' : 'Back'}
           </button>
           {step < 4 ? (

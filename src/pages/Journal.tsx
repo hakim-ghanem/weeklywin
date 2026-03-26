@@ -65,7 +65,7 @@ export default function Journal() {
   return (
     <div>
       {/* Mood trend */}
-      <div className="mb-5 rounded-2xl bg-white p-4 shadow-[var(--shadow-card)]">
+      <div className="mb-5 rounded-2xl bg-white p-4 shadow-card">
         <div className="flex items-center justify-center gap-3">
           {last7Days.map(dateStr => {
             const entry = state.journal[dateStr]
@@ -81,7 +81,7 @@ export default function Journal() {
       </div>
 
       {/* Today's entry */}
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <h2 className="mb-4 text-lg font-bold text-[var(--color-text)]">Today's Journal</h2>
 
         {/* Mood selector */}
@@ -137,7 +137,7 @@ export default function Journal() {
               const entry = state.journal[dateStr]
               const moodInfo = MOODS.find(m => m.value === entry.mood)
               return (
-                <div key={dateStr} className="rounded-2xl bg-white p-4 shadow-[var(--shadow-card)]">
+                <div key={dateStr} className="rounded-2xl bg-white p-4 shadow-card">
                   <div className="mb-1 flex items-center justify-between">
                     <span className="text-sm font-semibold text-[var(--color-text)]">{formatDate(dateStr)}</span>
                     {moodInfo && <span className="text-xl">{moodInfo.emoji}</span>}

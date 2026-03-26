@@ -59,7 +59,7 @@ export default function Settings() {
     <div className="flex flex-col gap-5">
       <h2 className="text-2xl font-bold text-[var(--color-text)]">Settings</h2>
 
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Profile</h3>
         <input
           type="text"
@@ -70,7 +70,7 @@ export default function Settings() {
         />
       </div>
 
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Parent PIN</h3>
         <input
           type="password"
@@ -83,7 +83,7 @@ export default function Settings() {
         <p className="mt-2 text-sm text-[var(--color-text-tertiary)]">Protects settings from changes</p>
       </div>
 
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-base font-bold text-[var(--color-text)]">Reward Shop</h3>
           <button onClick={() => setShowNewReward(!showNewReward)} className="rounded-xl bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white">+ Add</button>
@@ -112,7 +112,7 @@ export default function Settings() {
         ))}
       </div>
 
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Point Values</h3>
         {Object.entries(state.settings.pointValues).map(([key, value]) => (
           <div key={key} className="flex items-center justify-between py-2.5">
@@ -124,7 +124,7 @@ export default function Settings() {
         ))}
       </div>
 
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Calendar Export</h3>
         <p className="mb-4 text-sm text-[var(--color-text-secondary)]">Export tasks to Apple Calendar for reminders</p>
         <button
@@ -140,7 +140,7 @@ export default function Settings() {
         </button>
       </div>
 
-      <div className="rounded-2xl bg-white p-5 shadow-[var(--shadow-card)]">
+      <div className="rounded-2xl bg-white p-5 shadow-card">
         <h3 className="mb-3 text-base font-bold text-[var(--color-text)]">Data Sync</h3>
         <p className="mb-4 text-sm text-[var(--color-text-secondary)]">Sync between devices via iCloud Drive</p>
         <div className="flex gap-3">
