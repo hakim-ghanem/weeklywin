@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
-import { getWeekKey, getAllDays, formatDayFull, formatDayShort } from '../utils/dates'
+import { getAllDays, formatDayFull, formatDayShort } from '../utils/dates'
 import type { Category, DayOfWeek, Priority, Task } from '../types'
 import { v4 as uuid } from 'uuid'
 import { downloadICS } from '../utils/calendar'

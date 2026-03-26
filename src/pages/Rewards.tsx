@@ -1,5 +1,5 @@
 import { useApp } from '../context/AppContext'
-import { getLevelForPoints, getNextLevel, LEVELS } from '../utils/points'
+import { getLevelForPoints, getNextLevel } from '../utils/points'
 
 const BADGE_DEFS = [
   { id: 'bookworm', name: 'Bookworm', emoji: '📚', description: 'Complete 10 school tasks' },

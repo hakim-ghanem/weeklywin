@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react'
-import type { AppData, Task, WeekData, JournalEntry, Badge, RewardItem, Mood, DayOfWeek, Category, Priority } from '../types'
-import { loadData, saveData, getDefaultData } from '../utils/storage'
+import type { AppData, Task, WeekData, Badge, RewardItem, Mood } from '../types'
+import { loadData, saveData } from '../utils/storage'
 import { getWeekKey, getTodayKey, getTodayDayOfWeek } from '../utils/dates'
 import { getPointsForTask, getLevelForPoints, isDayComplete, isWeekComplete } from '../utils/points'
 import { v4 as uuid } from 'uuid'

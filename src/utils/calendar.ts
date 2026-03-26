@@ -1,4 +1,4 @@
-import type { Task, DayOfWeek } from '../types'
+import type { Task } from '../types'
 import { getWeekDates } from './dates'
 
 function formatICSDate(dateStr: string, time: string): string {
